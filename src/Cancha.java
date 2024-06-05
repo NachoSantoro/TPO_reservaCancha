@@ -1,4 +1,4 @@
-public class Cancha {
+public abstract class Cancha {
 
     int id;
     String tipodecancha;
@@ -34,13 +34,5 @@ public class Cancha {
 
     public void setCapMax(int capMax) {
         this.capMax = capMax;
-    }
-
-    public boolean isTechada() {
-        return techada;
-    }
-
-    public void setTechada(boolean techada) {
-        this.techada = techada;
     }
 }
