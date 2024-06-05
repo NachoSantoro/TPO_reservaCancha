@@ -1,11 +1,11 @@
-public class cancha {
+public class Cancha {
 
     int id;
     String tipodecancha;
     int capMax;
     boolean techada;
 
-    public cancha(int id, String tipodecancha, int capMax, boolean techada) {
+    public Cancha(int id, String tipodecancha, int capMax, boolean techada) {
         this.id = id;
         this.tipodecancha = tipodecancha;
         this.capMax = capMax;
