@@ -15,8 +15,20 @@ public class Main {
         patero.agregarCanchas(f9);
         patero.agregarCanchas(f11);
 
-        for (TipoCancha tipoCancha : patero.canchasComplejo){
-            System.out.println(tipoCancha.getTipodecancha());
-        }
+        Turno turno1 = new Turno(12, true);
+        Turno turno2 = new Turno(13, true);
+        Turno turno3 = new Turno(14, true);
+        Turno turno4 = new Turno(15, true);
+        Turno turno5 = new Turno(16, true);
+
+        patero.agregarTurnosDisponibles(turno1);
+        patero.agregarTurnosDisponibles(turno2);
+        patero.agregarTurnosDisponibles(turno3);
+        patero.agregarTurnosDisponibles(turno4);
+        patero.agregarTurnosDisponibles(turno5);
+
+        patero.getTurnosDisponibles();
+        patero.getCanchasComplejo();
+
     }
 }
