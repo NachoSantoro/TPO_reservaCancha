@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Complejo {
@@ -49,5 +51,19 @@ public class Complejo {
         }
     }
 
+
+    public List<Reserva> listado = new ArrayList<>();
+
+    public void crearReserva(TipoCancha cancha, Turno horario, String nombre){
+        Reserva nuevaReserva = new Reserva(cancha,horario,nombre);
+        listado.add(nuevaReserva);
+        horario.setDisponible(false);
+    }
+
+    public void getReserva(){
+        for (Reserva reserva : listado){
+            System.out.println(reserva.nombre + " reservo la cancha de: " + reserva.cancha.tipodecancha + " en el horario: " + reserva.horario.horario);
+        }
+    }
 
 }

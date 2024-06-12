@@ -29,6 +29,10 @@ public class Main {
 
         patero.getTurnosDisponibles();
         patero.getCanchasComplejo();
+        patero.crearReserva(f5,turno1,"Tomy");
+
+        patero.getReserva();
+        patero.getTurnosDisponibles();
 
     }
 }
