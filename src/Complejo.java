@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Complejo {
 
@@ -39,9 +40,17 @@ public class Complejo {
     }
 
     public void getCanchasComplejo() {
-        for (TipoCancha tipoCancha : canchasComplejo) {
-            System.out.println(tipoCancha.tipodecancha);
-        }
+//        for (TipoCancha tipoCancha : canchasComplejo) {
+//            System.out.println(tipoCancha.tipodecancha);
+//        }
+        List<TipoCancha> ordenados = canchasComplejo
+                .stream()
+                .sorted((t1, t2) -> t1.getTipodecancha().compareTo(t2.getTipodecancha()) )
+                .toList();
+
+        // Printing the sorted names
+        System.out.println("Canchas List (A a Z):" + ordenados);
+
     }
 
     public void getTurnosDisponibles() {
