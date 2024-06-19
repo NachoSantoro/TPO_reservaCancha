@@ -67,10 +67,22 @@ public class Complejo {
 
     public List<Reserva> listado = new ArrayList<>();
 
-    public void crearReserva(TipoCancha cancha, Turno horario, String nombre){
-        Reserva nuevaReserva = new Reserva(cancha,horario,nombre);
-        listado.add(nuevaReserva);
-        horario.setDisponible(false);
+    public void crearReserva(TipoCancha cancha, Turno horario, String nombre) {
+        boolean turnoDisponible = false;
+
+        for (Turno turno : turnosDisponibles) {
+            if (turno.getHorario() == horario.getHorario() && turno.getTipoCancha().equals(cancha) && turno.isDisponible()) {
+                turnoDisponible = true;
+                turno.setDisponible(false);
+                Reserva nuevaReserva = new Reserva(cancha, turno, nombre);
+                listado.add(nuevaReserva);
+                break;
+            }
+        }
+
+        if (!turnoDisponible) {
+            System.out.println("El turno no está disponible.");
+        }
     }
 
     public void getReserva(){

@@ -1,12 +1,12 @@
 public class Turno {
-
     int horario;
     boolean disponible;
+    TipoCancha tipoCancha;
 
-
-    public Turno(int horario, boolean disponible) {
+    public Turno(int horario, boolean disponible, TipoCancha tipoCancha) {
         this.horario = horario;
         this.disponible = disponible;
+        this.tipoCancha = tipoCancha;
     }
 
     public int getHorario() {
@@ -25,11 +25,20 @@ public class Turno {
         this.disponible = disponible;
     }
 
+    public TipoCancha getTipoCancha() {
+        return tipoCancha;
+    }
+
+    public void setTipoCancha(TipoCancha tipoCancha) {
+        this.tipoCancha = tipoCancha;
+    }
+
     @Override
     public String toString() {
         return "Turno{" +
                 "horario=" + horario +
                 ", disponible=" + disponible +
+                ", tipoCancha=" + tipoCancha +
                 '}';
     }
 }

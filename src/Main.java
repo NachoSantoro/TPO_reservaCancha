@@ -1,38 +1,51 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-
         Complejo patero = new Complejo("Patero's");
 
-        TipoCancha f5 = new TipoCancha(01,"Futbol 5",10,true);
-        TipoCancha f7 = new TipoCancha(02,"Futbol 7",14,true);
-        TipoCancha f9 = new TipoCancha(03,"Futbol 9",18,true);
-        TipoCancha f11 = new TipoCancha(04,"Futbol 11",22,true);
+        TipoCancha f5 = new TipoCancha(1, "Futbol 5", 10, true);
+        TipoCancha f7 = new TipoCancha(2, "Futbol 7", 14, true);
+        TipoCancha f9 = new TipoCancha(3, "Futbol 9", 18, true);
+        TipoCancha f11 = new TipoCancha(4, "Futbol 11", 22, true);
 
         patero.agregarCanchas(f5);
         patero.agregarCanchas(f7);
         patero.agregarCanchas(f9);
         patero.agregarCanchas(f11);
 
-        Turno turno1 = new Turno(12, true);
-        Turno turno2 = new Turno(13, true);
-        Turno turno3 = new Turno(14, true);
-        Turno turno4 = new Turno(15, true);
-        Turno turno5 = new Turno(16, true);
+        // Crear turnos para cada tipo de cancha
+        Turno turno1F5 = new Turno(12, true, f5);
+        Turno turno2F5 = new Turno(13, true, f5);
+        Turno turno1F11 = new Turno(12, true, f11);
+        Turno turno2F11 = new Turno(13, true, f11);
 
-        patero.agregarTurnosDisponibles(turno1);
-        patero.agregarTurnosDisponibles(turno2);
-        patero.agregarTurnosDisponibles(turno3);
-        patero.agregarTurnosDisponibles(turno4);
-        patero.agregarTurnosDisponibles(turno5);
+        patero.agregarTurnosDisponibles(turno1F5);
+        patero.agregarTurnosDisponibles(turno2F5);
+        patero.agregarTurnosDisponibles(turno1F11);
+        patero.agregarTurnosDisponibles(turno2F11);
 
+        System.out.println("Turnos disponibles iniciales:");
         patero.getTurnosDisponibles();
-        patero.getCanchasComplejo();
-        patero.crearReserva(f5,turno1,"Tomy");
+        System.out.println();
 
+        // Caso 1: Dos usuarios intentan reservar el mismo horario y la misma cancha
+        System.out.println("Caso 1: Dos usuarios intentan reservar el mismo horario y la misma cancha");
+        patero.crearReserva(f11, turno1F11, "Tomy");
+        patero.crearReserva(f11, turno1F11, "Luis");
         patero.getReserva();
         patero.getTurnosDisponibles();
+        System.out.println();
 
+        // Caso 2: Dos usuarios reservan la misma cancha en diferentes horarios
+        System.out.println("Caso 2: Dos usuarios reservan la misma cancha en diferentes horarios");
+        patero.crearReserva(f11, turno2F11, "Ana");
+        patero.getReserva();
+        patero.getTurnosDisponibles();
+        System.out.println();
+
+        // Caso 3: Dos usuarios reservan diferentes canchas en el mismo horario
+        System.out.println("Caso 3: Dos usuarios reservan diferentes canchas en el mismo horario");
+        patero.crearReserva(f5, turno1F5, "Carlos");
+        patero.getReserva();
+        patero.getTurnosDisponibles();
     }
 }
