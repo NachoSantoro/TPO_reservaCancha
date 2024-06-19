@@ -35,4 +35,9 @@ public abstract class Cancha {
     public void setCapMax(int capMax) {
         this.capMax = capMax;
     }
+
+    @Override
+    public String toString() {
+        return "Cancha{" + tipodecancha + '}';
+    }
 }
