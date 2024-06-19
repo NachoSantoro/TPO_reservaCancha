@@ -4,6 +4,4 @@ public class TipoCancha extends Cancha{
         super(id, tipodecancha, capMax, techada);
     }
 
-
-
 }
