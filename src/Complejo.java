@@ -50,18 +50,15 @@ public class Complejo {
 
     }
 
-    public void getTurnosDisponibles() {
-//        for (Turno turno : turnosDisponibles) {
-//            if (turno.isDisponible())
-//                System.out.println(turno.getHorario());
-//        }
-
+    // Actualización de este método
+    public void getTurnosDisponibles(TipoCancha canchaDeseada) {
         List<Turno> ordenados = turnosDisponibles
                 .stream()
+                .filter(turno -> turno.isDisponible() && turno.getTipoCancha().equals(canchaDeseada))
                 .sorted(Comparator.comparingInt(Turno::getHorario))
                 .toList();
 
-        System.out.println("horarios List (0 a infinito):" + ordenados);
+        System.out.println("Horarios disponibles para la cancha " + canchaDeseada.getTipodecancha() + ": " + ordenados);
     }
 
 

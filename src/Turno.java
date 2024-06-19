@@ -38,7 +38,6 @@ public class Turno {
         return "Turno{" +
                 "horario=" + horario +
                 ", disponible=" + disponible +
-                ", tipoCancha=" + tipoCancha +
                 '}';
     }
 }

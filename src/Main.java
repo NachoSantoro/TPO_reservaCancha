@@ -24,7 +24,8 @@ public class Main {
         patero.agregarTurnosDisponibles(turno2F11);
 
         System.out.println("Turnos disponibles iniciales:");
-        patero.getTurnosDisponibles();
+        patero.getTurnosDisponibles(f5);
+        patero.getTurnosDisponibles(f11);
         System.out.println();
 
         // Caso 1: Dos usuarios intentan reservar el mismo horario y la misma cancha
@@ -32,20 +33,23 @@ public class Main {
         patero.crearReserva(f11, turno1F11, "Tomy");
         patero.crearReserva(f11, turno1F11, "Luis");
         patero.getReserva();
-        patero.getTurnosDisponibles();
+        patero.getTurnosDisponibles(f5);
+        patero.getTurnosDisponibles(f11);
         System.out.println();
 
         // Caso 2: Dos usuarios reservan la misma cancha en diferentes horarios
         System.out.println("Caso 2: Dos usuarios reservan la misma cancha en diferentes horarios");
         patero.crearReserva(f11, turno2F11, "Ana");
         patero.getReserva();
-        patero.getTurnosDisponibles();
+        patero.getTurnosDisponibles(f5);
+        patero.getTurnosDisponibles(f11);
         System.out.println();
 
         // Caso 3: Dos usuarios reservan diferentes canchas en el mismo horario
         System.out.println("Caso 3: Dos usuarios reservan diferentes canchas en el mismo horario");
         patero.crearReserva(f5, turno1F5, "Carlos");
         patero.getReserva();
-        patero.getTurnosDisponibles();
+        patero.getTurnosDisponibles(f5);
+        patero.getTurnosDisponibles(f11);
     }
 }
