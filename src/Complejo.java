@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Complejo {
 
@@ -39,16 +37,31 @@ public class Complejo {
     }
 
     public void getCanchasComplejo() {
-        for (TipoCancha tipoCancha : canchasComplejo) {
-            System.out.println(tipoCancha.tipodecancha);
-        }
+//        for (TipoCancha tipoCancha : canchasComplejo) {
+//            System.out.println(tipoCancha.tipodecancha);
+//        }
+        List<TipoCancha> ordenados = canchasComplejo
+                .stream()
+                .sorted(Comparator.comparingInt(Cancha::getId))
+                .toList();
+
+        // Printing the sorted names
+        System.out.println("Canchas List (A a Z):" + ordenados);
+
     }
 
     public void getTurnosDisponibles() {
-        for (Turno turno : turnosDisponibles) {
-            if (turno.isDisponible())
-                System.out.println(turno.getHorario());
-        }
+//        for (Turno turno : turnosDisponibles) {
+//            if (turno.isDisponible())
+//                System.out.println(turno.getHorario());
+//        }
+
+        List<Turno> ordenados = turnosDisponibles
+                .stream()
+                .sorted(Comparator.comparingInt(Turno::getHorario))
+                .toList();
+
+        System.out.println("horarios List (0 a infinito):" + ordenados);
     }
 
 

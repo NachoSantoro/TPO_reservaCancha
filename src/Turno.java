@@ -3,6 +3,7 @@ public class Turno {
     int horario;
     boolean disponible;
 
+
     public Turno(int horario, boolean disponible) {
         this.horario = horario;
         this.disponible = disponible;
@@ -24,5 +25,11 @@ public class Turno {
         this.disponible = disponible;
     }
 
-
+    @Override
+    public String toString() {
+        return "Turno{" +
+                "horario=" + horario +
+                ", disponible=" + disponible +
+                '}';
+    }
 }
