@@ -82,10 +82,18 @@ public class Complejo {
         }
     }
 
-    public void getReserva(){
-        for (Reserva reserva : listado){
-            System.out.println(reserva.nombre + " reservo la cancha de: " + reserva.cancha.tipodecancha + " en el horario: " + reserva.horario.horario);
+    public void getReserva(TipoCancha cancha) {
+        boolean found = false;
+        for (Reserva reserva : listado) {
+            if (reserva.cancha.equals(cancha)) {
+                System.out.println(reserva.nombre + " reservó la cancha de: " + reserva.cancha.getTipodecancha() + " en el horario: " + reserva.horario.getHorario());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No hay reservas para la cancha: " + cancha.getTipodecancha());
         }
     }
+
 
 }
