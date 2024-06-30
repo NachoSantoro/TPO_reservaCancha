@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Complejo {
 
@@ -22,11 +19,11 @@ public class Complejo {
         this.nombre = nombre;
     }
 
-    public void agregarCanchas(TipoCancha tipoCancha){
+    public void agregarCanchas(TipoCancha tipoCancha) {
         canchasComplejo.add(tipoCancha);
     }
 
-    public void agregarTurnosDisponibles(Turno turno){
+    public void agregarTurnosDisponibles(Turno turno) {
         turnosDisponibles.add(turno);
     }
 
@@ -36,11 +33,18 @@ public class Complejo {
         }
     }
 
-    public void getTurnosDisponibles() {
-        for (Turno turno : turnosDisponibles) {
-            if (turno.isDisponible()) {
-                System.out.println(turno);
-            }
+    public void getTurnosDisponibles(TipoCancha canchaDeseada) {
+        List<Turno> ordenados = turnosDisponibles
+                .stream()
+                .filter(turno -> turno.isDisponible() && turno.getTipoCancha().equals(canchaDeseada))
+                .sorted(Comparator.comparingInt(Turno::getHorario))
+                .toList();
+
+        System.out.println("Horarios disponibles para la cancha " + canchaDeseada.getTipodecancha() + ":");
+        for (Turno turno : ordenados) {
+            System.out.println("Horario: " + turno.getHorario());
+            System.out.println("Disponible: " + turno.isDisponible());
+            System.out.println("------------");
         }
     }
 

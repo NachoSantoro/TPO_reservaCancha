@@ -55,8 +55,30 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Turnos disponibles:");
-                    patero.getTurnosDisponibles();
+                    System.out.println("Ingrese el tipo de cancha (5, 7, 9, 11):");
+                    int tipoCancha = scanner.nextInt();
+                    scanner.nextLine();
+
+                    TipoCancha canchaSeleccionada = null;
+                    switch (tipoCancha) {
+                        case 5:
+                            canchaSeleccionada = f5;
+                            break;
+                        case 7:
+                            canchaSeleccionada = f7;
+                            break;
+                        case 9:
+                            canchaSeleccionada = f9;
+                            break;
+                        case 11:
+                            canchaSeleccionada = f11;
+                            break;
+                        default:
+                            System.out.println("Tipo de cancha no válido.");
+                            continue;
+                    }
+
+                    patero.getTurnosDisponibles(canchaSeleccionada);
                     break;
                 case 2:
                     System.out.println("Canchas disponibles:");
@@ -64,10 +86,10 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Ingrese el tipo de cancha (5, 7, 9, 11):");
-                    int tipoCancha = scanner.nextInt();
+                    tipoCancha = scanner.nextInt();
                     scanner.nextLine();
 
-                    TipoCancha canchaSeleccionada = null;
+                    canchaSeleccionada = null;
                     switch (tipoCancha) {
                         case 5:
                             canchaSeleccionada = f5;
