@@ -35,9 +35,8 @@ public class Turno {
 
     @Override
     public String toString() {
-        return "Turno{" +
-                "horario=" + horario +
-                ", disponible=" + disponible +
-                '}';
+        return "Cancha: " + tipoCancha.getTipodecancha() + "\n" +
+                "Horario: " + horario + "\n" +
+                "Disponible: " + disponible + "\n";
     }
 }

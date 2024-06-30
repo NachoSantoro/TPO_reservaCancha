@@ -1,12 +1,11 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Complejo {
 
     String nombre;
-
     Set<TipoCancha> canchasComplejo = new HashSet<>();
     Set<Turno> turnosDisponibles = new HashSet<>();
+    public List<Reserva> listado = new ArrayList<>();
 
     public Complejo(String nombre) {
         this.nombre = nombre;
@@ -20,37 +19,20 @@ public class Complejo {
         this.nombre = nombre;
     }
 
-//    public Set<TipoCancha> getCanchasComplejo() {
-//        return canchasComplejo;
-//    }
-
-//    public void setCanchasComplejo(Set<TipoCancha> canchasComplejo) {
-//        this.canchasComplejo = canchasComplejo;
-//    }
-
-    public void agregarCanchas(TipoCancha tipoCancha){
+    public void agregarCanchas(TipoCancha tipoCancha) {
         canchasComplejo.add(tipoCancha);
     }
 
-    public void agregarTurnosDisponibles(Turno turno){
+    public void agregarTurnosDisponibles(Turno turno) {
         turnosDisponibles.add(turno);
     }
 
     public void getCanchasComplejo() {
-//        for (TipoCancha tipoCancha : canchasComplejo) {
-//            System.out.println(tipoCancha.tipodecancha);
-//        }
-        List<TipoCancha> ordenados = canchasComplejo
-                .stream()
-                .sorted(Comparator.comparingInt(Cancha::getId))
-                .toList();
-
-        // Printing the sorted names
-        System.out.println("Canchas List (A a Z):" + ordenados);
-
+        for (TipoCancha tipoCancha : canchasComplejo) {
+            System.out.println(tipoCancha.getTipodecancha());
+        }
     }
 
-    // Actualización de este método
     public void getTurnosDisponibles(TipoCancha canchaDeseada) {
         List<Turno> ordenados = turnosDisponibles
                 .stream()
@@ -58,11 +40,13 @@ public class Complejo {
                 .sorted(Comparator.comparingInt(Turno::getHorario))
                 .toList();
 
-        System.out.println("Horarios disponibles para la cancha " + canchaDeseada.getTipodecancha() + ": " + ordenados);
+        System.out.println("Horarios disponibles para la cancha " + canchaDeseada.getTipodecancha() + ":");
+        for (Turno turno : ordenados) {
+            System.out.println("Horario: " + turno.getHorario());
+            System.out.println("Disponible: " + turno.isDisponible());
+            System.out.println("------------");
+        }
     }
-
-
-    public List<Reserva> listado = new ArrayList<>();
 
     public void crearReserva(TipoCancha cancha, Turno horario, String nombre) {
         boolean turnoDisponible = false;
@@ -82,18 +66,9 @@ public class Complejo {
         }
     }
 
-    public void getReserva(TipoCancha cancha) {
-        boolean found = false;
+    public void getReserva() {
         for (Reserva reserva : listado) {
-            if (reserva.cancha.equals(cancha)) {
-                System.out.println(reserva.nombre + " reservó la cancha de: " + reserva.cancha.getTipodecancha() + " en el horario: " + reserva.horario.getHorario());
-                found = true;
-            }
-        }
-        if (!found) {
-            System.out.println("No hay reservas para la cancha: " + cancha.getTipodecancha());
+            System.out.println(reserva.nombre + " reservó la cancha de: " + reserva.cancha.getTipodecancha() + " en el horario: " + reserva.horario.getHorario());
         }
     }
-
-
 }
