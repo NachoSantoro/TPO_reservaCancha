@@ -34,41 +34,53 @@ public class Complejo {
     }
 
     public void getTurnosDisponibles(TipoCancha canchaDeseada) {
-        List<Turno> ordenados = turnosDisponibles
-                .stream()
-                .filter(turno -> turno.isDisponible() && turno.getTipoCancha().equals(canchaDeseada))
-                .sorted(Comparator.comparingInt(Turno::getHorario))
-                .toList();
+        try {
+            List<Turno> ordenados = turnosDisponibles
+                    .stream()
+                    .filter(turno -> turno.isDisponible() && turno.getTipoCancha().equals(canchaDeseada))
+                    .sorted(Comparator.comparingInt(Turno::getHorario))
+                    .toList();
 
-        System.out.println("Horarios disponibles para la cancha " + canchaDeseada.getTipodecancha() + ":");
-        for (Turno turno : ordenados) {
-            System.out.println("Horario: " + turno.getHorario());
-            System.out.println("Disponible: " + turno.isDisponible());
-            System.out.println("------------");
+            System.out.println("Horarios disponibles para la cancha " + canchaDeseada.getTipodecancha() + ":");
+            for (Turno turno : ordenados) {
+                System.out.println("Horario: " + turno.getHorario());
+                System.out.println("Disponible: " + turno.isDisponible());
+                System.out.println("------------");
+            }
+        } catch (Exception e) {
+            System.out.println("Ocurrió un error al obtener los turnos disponibles: " + e.getMessage());
         }
     }
 
     public void crearReserva(TipoCancha cancha, Turno horario, String nombre) {
-        boolean turnoDisponible = false;
+        try {
+            boolean turnoDisponible = false;
 
-        for (Turno turno : turnosDisponibles) {
-            if (turno.getHorario() == horario.getHorario() && turno.getTipoCancha().equals(cancha) && turno.isDisponible()) {
-                turnoDisponible = true;
-                turno.setDisponible(false);
-                Reserva nuevaReserva = new Reserva(cancha, turno, nombre);
-                listado.add(nuevaReserva);
-                break;
+            for (Turno turno : turnosDisponibles) {
+                if (turno.getHorario() == horario.getHorario() && turno.getTipoCancha().equals(cancha) && turno.isDisponible()) {
+                    turnoDisponible = true;
+                    turno.setDisponible(false);
+                    Reserva nuevaReserva = new Reserva(cancha, turno, nombre);
+                    listado.add(nuevaReserva);
+                    break;
+                }
             }
-        }
 
-        if (!turnoDisponible) {
-            System.out.println("El turno no está disponible.");
+            if (!turnoDisponible) {
+                System.out.println("El turno no está disponible.");
+            }
+        } catch (Exception e) {
+            System.out.println("Ocurrió un error al crear la reserva: " + e.getMessage());
         }
     }
 
     public void getReserva() {
-        for (Reserva reserva : listado) {
-            System.out.println(reserva.nombre + " reservó la cancha de: " + reserva.cancha.getTipodecancha() + " en el horario: " + reserva.horario.getHorario());
+        try {
+            for (Reserva reserva : listado) {
+                System.out.println(reserva.nombre + " reservó la cancha de: " + reserva.cancha.getTipodecancha() + " en el horario: " + reserva.horario.getHorario());
+            }
+        } catch (Exception e) {
+            System.out.println("Ocurrió un error al obtener las reservas: " + e.getMessage());
         }
     }
 }

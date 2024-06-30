@@ -43,106 +43,111 @@ public class Main {
         boolean continuar = true;
 
         while (continuar) {
-            System.out.println("Seleccione una opción:");
-            System.out.println("1. Mostrar turnos disponibles");
-            System.out.println("2. Mostrar canchas disponibles");
-            System.out.println("3. Crear una reserva");
-            System.out.println("4. Mostrar reservas");
-            System.out.println("5. Salir");
+            try {
+                System.out.println("Seleccione una opción:");
+                System.out.println("1. Mostrar turnos disponibles");
+                System.out.println("2. Mostrar canchas disponibles");
+                System.out.println("3. Crear una reserva");
+                System.out.println("4. Mostrar reservas");
+                System.out.println("5. Salir");
 
-            int opcion = scanner.nextInt();
-            scanner.nextLine();
+                int opcion = scanner.nextInt();
+                scanner.nextLine();
 
-            switch (opcion) {
-                case 1:
-                    System.out.println("Ingrese el tipo de cancha (5, 7, 9, 11):");
-                    int tipoCancha = scanner.nextInt();
-                    scanner.nextLine();
+                switch (opcion) {
+                    case 1:
+                        System.out.println("Ingrese el tipo de cancha (5, 7, 9, 11):");
+                        int tipoCancha = scanner.nextInt();
+                        scanner.nextLine();
 
-                    TipoCancha canchaSeleccionada = null;
-                    switch (tipoCancha) {
-                        case 5:
-                            canchaSeleccionada = f5;
-                            break;
-                        case 7:
-                            canchaSeleccionada = f7;
-                            break;
-                        case 9:
-                            canchaSeleccionada = f9;
-                            break;
-                        case 11:
-                            canchaSeleccionada = f11;
-                            break;
-                        default:
-                            System.out.println("Tipo de cancha no válido.");
-                            continue;
-                    }
+                        TipoCancha canchaSeleccionada = null;
+                        switch (tipoCancha) {
+                            case 5:
+                                canchaSeleccionada = f5;
+                                break;
+                            case 7:
+                                canchaSeleccionada = f7;
+                                break;
+                            case 9:
+                                canchaSeleccionada = f9;
+                                break;
+                            case 11:
+                                canchaSeleccionada = f11;
+                                break;
+                            default:
+                                System.out.println("Tipo de cancha no válido.");
+                                continue;
+                        }
 
-                    patero.getTurnosDisponibles(canchaSeleccionada);
-                    break;
-                case 2:
-                    System.out.println("Canchas disponibles:");
-                    patero.getCanchasComplejo();
-                    break;
-                case 3:
-                    System.out.println("Ingrese el tipo de cancha (5, 7, 9, 11):");
-                    tipoCancha = scanner.nextInt();
-                    scanner.nextLine();
+                        patero.getTurnosDisponibles(canchaSeleccionada);
+                        break;
+                    case 2:
+                        System.out.println("Canchas disponibles:");
+                        patero.getCanchasComplejo();
+                        break;
+                    case 3:
+                        System.out.println("Ingrese el tipo de cancha (5, 7, 9, 11):");
+                        tipoCancha = scanner.nextInt();
+                        scanner.nextLine();
 
-                    canchaSeleccionada = null;
-                    switch (tipoCancha) {
-                        case 5:
-                            canchaSeleccionada = f5;
-                            break;
-                        case 7:
-                            canchaSeleccionada = f7;
-                            break;
-                        case 9:
-                            canchaSeleccionada = f9;
-                            break;
-                        case 11:
-                            canchaSeleccionada = f11;
-                            break;
-                        default:
-                            System.out.println("Tipo de cancha no válido.");
-                            continue;
-                    }
+                        canchaSeleccionada = null;
+                        switch (tipoCancha) {
+                            case 5:
+                                canchaSeleccionada = f5;
+                                break;
+                            case 7:
+                                canchaSeleccionada = f7;
+                                break;
+                            case 9:
+                                canchaSeleccionada = f9;
+                                break;
+                            case 11:
+                                canchaSeleccionada = f11;
+                                break;
+                            default:
+                                System.out.println("Tipo de cancha no válido.");
+                                continue;
+                        }
 
-                    System.out.println("Ingrese el horario (ej: 12, 13):");
-                    int horario = scanner.nextInt();
-                    scanner.nextLine();
+                        System.out.println("Ingrese el horario (ej: 12, 13):");
+                        int horario = scanner.nextInt();
+                        scanner.nextLine();
 
-                    Turno turnoSeleccionado = null;
-                    for (Turno turno : patero.turnosDisponibles) {
-                        if (turno.getHorario() == horario && turno.getTipoCancha().equals(canchaSeleccionada) && turno.isDisponible()) {
-                            turnoSeleccionado = turno;
+                        Turno turnoSeleccionado = null;
+                        for (Turno turno : patero.turnosDisponibles) {
+                            if (turno.getHorario() == horario && turno.getTipoCancha().equals(canchaSeleccionada) && turno.isDisponible()) {
+                                turnoSeleccionado = turno;
+                                break;
+                            }
+                        }
+
+                        if (turnoSeleccionado == null) {
+                            System.out.println("Turno no disponible.");
                             break;
                         }
-                    }
 
-                    if (turnoSeleccionado == null) {
-                        System.out.println("Turno no disponible.");
+                        System.out.println("Ingrese el nombre del usuario:");
+                        String nombre = scanner.nextLine();
+
+                        patero.crearReserva(canchaSeleccionada, turnoSeleccionado, nombre);
+                        System.out.println("Reserva creada con éxito.");
                         break;
-                    }
-
-                    System.out.println("Ingrese el nombre del usuario:");
-                    String nombre = scanner.nextLine();
-
-                    patero.crearReserva(canchaSeleccionada, turnoSeleccionado, nombre);
-                    System.out.println("Reserva creada con éxito.");
-                    break;
-                case 4:
-                    System.out.println("Reservas:");
-                    patero.getReserva();
-                    break;
-                case 5:
-                    System.out.println("Saliendo...");
-                    continuar = false;
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
+                    case 4:
+                        System.out.println("Reservas:");
+                        patero.getReserva();
+                        break;
+                    case 5:
+                        System.out.println("Saliendo...");
+                        continuar = false;
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                }
+                System.out.println();
+            } catch (Exception e) {
+                System.out.println("Ocurrió un error: " + e.getMessage());
+                scanner.nextLine();
             }
-            System.out.println();
         }
 
         scanner.close();
